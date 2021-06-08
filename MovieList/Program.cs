@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+
+
 
 namespace MovieList
 {
@@ -8,85 +9,73 @@ namespace MovieList
     {
         static void Main(string[] args)
         {
-            bool again = true;
 
-            while (again == true)
 
+            //Each movie should be represented by an object of type Movie.
+            List<Movie> movies = new List<Movie>();
+
+            Movie m1 = new Movie("CHERRY", Genre.Drama);
+            movies.Add(m1);
+
+            Movie m2 = new Movie("Pulp Fiction", Genre.Drama);
+            movies.Add(m2);
+
+            Movie m3 = new Movie("Training Day", Genre.Drama);
+            movies.Add(m3);
+
+            Movie m4 = new Movie("Toy Story", Genre.Animated);
+            movies.Add(m4);
+
+            Movie m5 = new Movie("Cars", Genre.Animated);
+            movies.Add(m5);
+
+
+            Movie m6 = new Movie("A Quiet Place", Genre.Horror);
+            movies.Add(m6);
+
+            Movie m7 = new Movie("SAW", Genre.Horror);
+            movies.Add(m7);
+
+            Movie m8 = new Movie("TENET", Genre.Scifi);
+            movies.Add(m8);
+
+            Movie m9 = new Movie("INTERSTELLAR", Genre.Scifi) ;
+            movies.Add(m9);
+
+            Movie m10 = new Movie("STAR WARS : The Rise of Skywalker", Genre.Scifi);
+            movies.Add(m10);
+
+            Console.WriteLine("Here are the accepted Genres:");
+
+
+            Genre[] acceptedGenres = (Genre[])Enum.GetValues(typeof(Genre));
+
+            foreach (Genre g in acceptedGenres)
+            {
+                Console.WriteLine(g);
+            }
+
+            Console.WriteLine("Please input a movie genre you wish to search");
+            string input = Console.ReadLine();
+
+
+            Genre inputGenre = (Genre)Enum.Parse(typeof(Genre), input);
+
+            //Any time you do a search think loops
+            foreach (Movie m in movies)
             {
 
-                //Each movie should be represented by an object of type Movie.
-                List<Movie> MovieList = new List<Movie>();
-
-                MovieList.Add(new Movie("CHERRY", "Drama"));
-                MovieList.Add(new Movie("Pulp Fiction", "Drama"));
-                MovieList.Add(new Movie("Training Day", "Drama"));
-                MovieList.Add(new Movie("Toy Story", "Animated"));
-                MovieList.Add(new Movie("Cars", "Animated"));
-                MovieList.Add(new Movie("A Quiet Place", "Horror"));
-                MovieList.Add(new Movie("SAW", "Horror"));
-                MovieList.Add(new Movie("TENET", "Sci-Fi"));
-                MovieList.Add(new Movie("INTERSTELLAR", "Sci-Fi"));
-                MovieList.Add(new Movie("STAR WARS : The Rise of Skywalker", "Sci-Fi"));
-                //Sorts List 
-                var moviesOrder = MovieList.OrderBy(s => s.Title);
-
-
-
-                Console.WriteLine("Please select a movie genre: Drama, Animated, Horror, Sci-Fi");
-                string genre = Console.ReadLine().ToLower();
-
-                //Suppose to Return Movie Titles but does not work.
-                foreach (Movie m in moviesOrder)
+                if (m.Genre == inputGenre)
                 {
-                    if (m.Category == " ")
-                    {
-                        
-                        Console.WriteLine(m.Category);
-                    }
-                    if (genre == " ")
-                    {
-                        Console.WriteLine("Invalid input. Please try again");
-
-                    }
-                    Console.WriteLine();
-                    
+                    Console.WriteLine(m.Genre);
                 }
-            }
-        }
-        // Gets User Input Function
-        public static string GetUserInput(string message)
-        {
-            Console.WriteLine(message);
-            string input = Console.ReadLine().ToLower();
-
-            if (input == "drama" || input == "animated" || input == "horror" || input == "sci-fi")
-            {
-                return input;
-            }
-            else
-            {
-                string noInput = "Please try again";
-                return GetUserInput(noInput);
-
 
             }
-        }
 
-        public static bool PickAgain()
-        {
-            Console.WriteLine("Would you like to choose more movies? yes or no");
-            string input = Console.ReadLine().ToLower();
 
-            if (input == "yes" || input == "y")
-            {
-                Console.WriteLine("Great!");
-                return true;
-            }
-            else 
-            {
-                Console.WriteLine("Goodbye");
-                return false;
-            }
+
+
+
         }
     }   
 }

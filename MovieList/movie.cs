@@ -2,29 +2,39 @@
 
 namespace MovieList
 {
-    public enum Genre
+    public enum Category
     {
         Animated,
         Drama,
         Horror,
         Scifi,
-        
+
     }
 
-    class Movie
+    public class Movie
     {
+        //Field - Property
+
+        //I could not figure out how to get program running once switched to private.
+        
+        public string Title { get; set; }
+        public Category category { get; set; }
 
 
-        public string Movies { get; set; }
-
-        public Genre Genre { get; set; }
-
-
-        public Movie(string title, in Genre genre)
+        //Constructor
+        public Movie(string title, Category category)
         {
-            string movies = Movies;
-            Movies = movies;
-            this.Genre = Genre;
+            Title = title;
+            this.category = category;
         }
     }
+
 }
+        
+
+
+
+
+
+
+
